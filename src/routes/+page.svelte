@@ -6,8 +6,11 @@
 <div
   class="flex h-[calc(100vh-65px)] flex-col items-center justify-center gap-3"
 >
-  <h1 class="mt-5 text-center text-lg font-bold md:text-4xl">
-    Username - Password Auth using Lucia
+  <h1 class="mt-5 text-center text-lg font-bold md:text-6xl">
+    Build Your Brand
+  </h1>
+  <h1 class="text-center text-lg font-thin md:text-3xl text-primary/90">
+    Build E-commerce Store with build In Payment Gateway
   </h1>
   <p class="font-mono">
     Developed by <a

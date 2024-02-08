@@ -42,6 +42,7 @@
     "mode-watcher": "^0.2.0",
     "oslo": "^1.1.0",
     "pg": "^8.11.3",
+    "stripe": "^14.15.0",
     "svelte-sonner": "^0.3.12",
     "tailwind-merge": "^2.2.1",
     "tailwind-variants": "^0.1.20"

@@ -2,6 +2,7 @@
   import { Toaster } from "$lib/components/ui/sonner";
   import Navbar from "$lib/home/Navbar.svelte";
   import "../app.pcss";
+  import "../style.css";
   export let data;
   $: username = data.username;
   import { ModeWatcher } from "mode-watcher";

@@ -28,7 +28,7 @@
   ];
   export let details = {
     img: "https://i.pinimg.com/564x/84/a1/6a/84a16af6971e5c4234fa132c06b14969.jpg",
-    title: "Bhide Dev",
+    title: "Build Your Brand",
     link: "/",
     avatar:
       "https://i.pinimg.com/564x/68/b5/77/68b577ba7cb013903567b3537fd73747.jpg",
@@ -79,7 +79,9 @@
             src={details.img}
             alt="Your Company"
           />
-          <a href="/" class="text-lg font-semibold">{details.title}</a>
+          <a href="/" class="text-lg md:text-xl font-bold head_title"
+            >{details.title}</a
+          >
         </div>
         <div
           class="hidden md:ml-6 md:flex md:items-center md:space-x-4 w-full justify-center"
@@ -248,3 +250,13 @@
     </div>
   {/key}
 </nav>
+
+<style>
+  .head_title {
+    font-family: "Varela Round", sans-serif;
+    /* font-family: "Protest Revolution", sans-serif; */
+    /* font-family: "Comfortaa", sans-serif; */
+    /* font-family: "Rubik Doodle Shadow", system-ui; */
+    /* font-family: "Bungee Shade", sans-serif; */
+  }
+</style>

@@ -1,7 +1,13 @@
+import { getProducts } from "$lib/server/stripecode";
 import type { LayoutServerLoad } from "./$types";
 
 export const load: LayoutServerLoad = async ({ locals, url }) => {
     let session = await locals.user;
+    // get products from stripeCode and return it
+    let Productsdata = await getProducts();
+
+
+
 
     if (session) {
         return {
