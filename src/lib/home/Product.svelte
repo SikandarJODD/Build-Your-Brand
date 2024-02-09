@@ -1,9 +1,12 @@
 <script>
   import { allproducts, cartItems } from "$lib/state";
+  import { fade, scale } from "svelte/transition";
+  import CheckoutBtn from "./CheckoutBtn.svelte";
   export let i = 0;
   export let title = "Mango";
   export let quantity = 1;
   export let pricetag = 60;
+  export let img = "";
   $: price = quantity > 0 ? quantity * pricetag : pricetag;
   let increment = () => {
     allproducts.update((n) => {
@@ -20,16 +23,31 @@
       quantity = 0;
     }
     allproducts.update((n) => {
-      n[i].quantity -= 1;
+      // if product quantity is 0, remove it from the cart
+      if (n[i].quantity === 0) {
+        return n;
+      } else {
+        n[i].quantity -= 1;
+      }
       return n;
     });
   };
 </script>
 
 <div
-  class="card rounded-lg border bg-gray-800/50 p-3 transition-all duration-150 ease-linear hover:bg-gray-800/90"
+  transition:fade={{ duration: 200 }}
+  class="w-full md:w-72 card rounded-lg border dark:bg-gray-800/50 p-3 transition-all duration-150 ease-linear dark:hover:bg-gray-800/70 border-transparent hover:border-primary"
 >
-  <h1 class="text-center text-2xl font-semibold text-yellow-400">{title}</h1>
+  <div>
+    <img
+      src={img}
+      alt="{title}-c"
+      class="h-64 w-full object-cover object-center rounded-lg transition-all duration-150 ease-linear"
+    />
+  </div>
+  <h1 class="capitalize text-left text-2xl font-semibold my-2 text-primary">
+    {title}
+  </h1>
   <div class="quantity">
     Quantity : {quantity}
     <div>
@@ -40,6 +58,7 @@
   <div class="price">
     Price : {price}
   </div>
+  <CheckoutBtn />
 </div>
 
 <style>

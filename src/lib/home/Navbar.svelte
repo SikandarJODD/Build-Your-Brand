@@ -4,6 +4,7 @@
     AlignJustify,
     Home,
     Package,
+    PanelsTopLeft,
     ScrollText,
     User,
     X,
@@ -24,6 +25,11 @@
       name: "Products",
       link: "/products",
       icon: Package,
+    },
+    {
+      name: "Dashboard",
+      link: "/dashboard",
+      icon: PanelsTopLeft,
     },
   ];
   export let details = {
@@ -49,7 +55,11 @@
       link: "",
     },
   ];
+  let wid = 0;
+  $: console.log(wid);
 </script>
+
+<svelte:window bind:innerWidth={wid} />
 
 <nav class="border-b border-primary/60 bg-gray-50 dark:bg-gray-900">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -74,14 +84,16 @@
           </button>
         </div>
         <div class="flex flex-shrink-0 items-center gap-2">
-          <img
-            class="h-8 w-auto rounded-full"
-            src={details.img}
-            alt="Your Company"
-          />
-          <a href="/" class="text-lg md:text-xl font-bold head_title"
-            >{details.title}</a
-          >
+          {#if wid > 700}
+            <img
+              class="h-8 w-auto rounded-full"
+              src={details.img}
+              alt="Your Company"
+            />
+          {/if}
+          <a href="/" class="text-xl font-bold head_title">
+            {wid < 600 ? "B Y B" : details.title}
+          </a>
         </div>
         <div
           class="hidden md:ml-6 md:flex md:items-center md:space-x-4 w-full justify-center"
@@ -253,10 +265,10 @@
 
 <style>
   .head_title {
-    font-family: "Varela Round", sans-serif;
+    /* font-family: "Varela Round", sans-serif; */
     /* font-family: "Protest Revolution", sans-serif; */
     /* font-family: "Comfortaa", sans-serif; */
-    /* font-family: "Rubik Doodle Shadow", system-ui; */
+    font-family: "Rubik Doodle Shadow", system-ui;
     /* font-family: "Bungee Shade", sans-serif; */
   }
 </style>

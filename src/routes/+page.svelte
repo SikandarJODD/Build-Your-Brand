@@ -12,15 +12,18 @@
   <h1 class="text-center text-lg font-thin md:text-3xl text-primary/90">
     Build E-commerce Store with build In Payment Gateway
   </h1>
-  <p class="font-mono">
+  <!-- <p class="font-mono">
     Developed by <a
       href="https://github.com/SikandarJODD"
       target="_blank"
       class=" hover:underline dark:text-sky-500">SikandarJODD</a
     >
-  </p>
+  </p> -->
 
-  <Button href="https://github.com/SikandarJODD/Auth-Lucia" target="_blank">
+  <Button
+    href="https://github.com/SikandarJODD/Build-Your-Brand"
+    target="_blank"
+  >
     <Github size={20} strokeWidth={1.5} class="mr-1.5" />
     Github Code</Button
   >
