@@ -26,15 +26,10 @@
       link: "/products",
       icon: Package,
     },
-    {
-      name: "Dashboard",
-      link: "/dashboard",
-      icon: PanelsTopLeft,
-    },
   ];
   export let details = {
     img: "https://i.pinimg.com/564x/84/a1/6a/84a16af6971e5c4234fa132c06b14969.jpg",
-    title: "Build Your Brand",
+    title: "Ukiyo",
     link: "/",
     avatar:
       "https://i.pinimg.com/564x/68/b5/77/68b577ba7cb013903567b3537fd73747.jpg",
@@ -44,11 +39,11 @@
   export let profileItems = [
     {
       name: "Your Profile",
-      link: "",
+      link: "/studio",
     },
     {
       name: "Settings",
-      link: "",
+      link: "/studio/edit",
     },
     {
       name: "Sign Out",
@@ -88,10 +83,10 @@
             <img
               class="h-8 w-auto rounded-full"
               src={details.img}
-              alt="Your Company"
+              alt="Ukiyo logo"
             />
           {/if}
-          <a href="/" class="text-xl font-bold head_title">
+          <a href="/" class="text-xl font-bold head_font">
             {wid < 600 ? "B Y B" : details.title}
           </a>
         </div>
@@ -264,7 +259,7 @@
 </nav>
 
 <style>
-  .head_title {
+  :global(.head_title) {
     /* font-family: "Varela Round", sans-serif; */
     /* font-family: "Protest Revolution", sans-serif; */
     /* font-family: "Comfortaa", sans-serif; */

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 export let authSchema = z.object({
     username: z.string(),
-    password: z.string().min(6)
+    password: z.string().min(6),
+    userType: z.string()
 })

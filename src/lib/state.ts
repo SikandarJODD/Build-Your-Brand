@@ -64,3 +64,6 @@ export let sprod = writable([
         quantity: 0
     },
 ]);
+
+
+export let userType = writable('buyer');

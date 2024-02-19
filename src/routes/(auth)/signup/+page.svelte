@@ -8,6 +8,7 @@
   import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
   import { toast } from "svelte-sonner";
   import { goto } from "$app/navigation";
+  import { userType } from "$lib/state";
 
   export let data: PageData;
   const { form, enhance, errors } = superForm(data.form, {
@@ -16,7 +17,11 @@
       if (form.valid) {
         toast.success("Sign up Successfully!");
         setTimeout(() => {
-          goto("/");
+          if ($userType === "buyer") {
+            goto("/studio/edit");
+          } else {
+            goto("/");
+          }
         }, 600);
       } else {
         toast.error("Please fill the form correctly!");
@@ -37,6 +42,7 @@
       >
     </Card.Header>
     <form method="post" use:enhance>
+      <input type="hidden" value={$userType} name="userType" />
       <Card.Content class="grid gap-4">
         <div class="grid gap-2">
           <Label for="username">Username</Label>

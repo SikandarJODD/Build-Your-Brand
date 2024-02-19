@@ -22,6 +22,7 @@ export const actions: Actions = {
         console.log(form);
         let username = form.data.username.toLowerCase();
         let password = form.data.password;
+        let userType = form.data.userType;
 
         let userId = generateId(15);
         let hashedPassword = (await new Scrypt().hash(password)).toString();
@@ -53,6 +54,6 @@ export const actions: Actions = {
             ...sessionCookie.attributes
         });
 
-        return { form };
+        return { form, redirect: "/studio/edit" };
     }
 };

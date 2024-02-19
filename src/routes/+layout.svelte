@@ -1,4 +1,5 @@
 <script>
+  import { page } from "$app/stores";
   import { Toaster } from "$lib/components/ui/sonner";
   import Navbar from "$lib/home/Navbar.svelte";
   import "../app.pcss";
@@ -7,6 +8,8 @@
   $: username = data.username;
   import { ModeWatcher } from "mode-watcher";
   import { fade, fly } from "svelte/transition";
+  $: isStudio = $page.url.pathname.split("/")[1] === "studio";
+  $: console.log($page.url.pathname, isStudio);
 </script>
 
 <!-- Toaster to show toast  -->
@@ -14,9 +17,19 @@
 <!-- for Dark & Light Mode : ModeWatcher -->
 <ModeWatcher />
 
-<Navbar {username} />
-{#key data.url}
-  <div in:fade={{ duration: 200 }}>
-    <slot />
-  </div>
-{/key}
+{#if !isStudio}
+  <Navbar {username} />
+{/if}
+{#if isStudio}
+  {#key data.url}
+    <div>
+      <slot />
+    </div>
+  {/key}
+{:else}
+  {#key data.url}
+    <div in:fade={{ duration: 200 }}>
+      <slot />
+    </div>
+  {/key}
+{/if}
