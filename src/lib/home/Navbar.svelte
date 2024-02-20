@@ -6,6 +6,7 @@
     Package,
     PanelsTopLeft,
     ScrollText,
+    ShoppingCart,
     User,
     X,
   } from "lucide-svelte";
@@ -106,7 +107,15 @@
       </div>
       <div class="flex items-center">
         <div class="flex items-center gap-2">
-          <ToggleMode />
+          <Button
+            size="icon"
+            variant="outline"
+            href="/cart"
+            class="bg-transparent border-primary/40"
+          >
+            <ShoppingCart size="22" strokeWidth="1.3" />
+          </Button>
+          <!-- <ToggleMode /> -->
           <div class="flex-shrink-0">
             {#if user.length === 0}
               <Button size="sm" href="/login">
@@ -165,6 +174,9 @@
                     >
                   {/if}
                 {/each}
+                <div class="mt-1 mx-2">
+                  <ToggleMode />
+                </div>
               </div>
             </div>
             <!-- content here -->

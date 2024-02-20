@@ -2,34 +2,21 @@
   import { allproducts, cartItems } from "$lib/state";
   import { fade, scale } from "svelte/transition";
   import CheckoutBtn from "./CheckoutBtn.svelte";
+  import Button from "$lib/components/ui/button/button.svelte";
+  import { ShoppingBag } from "lucide-svelte";
+  import { toast } from "svelte-sonner";
   export let i = 0;
   export let title = "Mango";
   export let quantity = 1;
   export let pricetag = 60;
   export let img = "";
-  $: price = quantity > 0 ? quantity * pricetag : pricetag;
-  let increment = () => {
+  let addToCart = () => {
     allproducts.update((n) => {
       n[i].quantity += 1;
-
       return n;
     });
-
-    quantity += 1;
-  };
-  let decrement = () => {
-    quantity -= 1;
-    if (quantity <= 0) {
-      quantity = 0;
-    }
-    allproducts.update((n) => {
-      // if product quantity is 0, remove it from the cart
-      if (n[i].quantity === 0) {
-        return n;
-      } else {
-        n[i].quantity -= 1;
-      }
-      return n;
+    toast.success("Added to Cart", {
+      description: `${title} added to cart`,
     });
   };
 </script>
@@ -48,36 +35,11 @@
   <h1 class="capitalize text-left text-2xl font-semibold my-2 text-primary">
     {title}
   </h1>
-  <div class="quantity">
-    Quantity : {quantity}
-    <div>
-      <button on:click={increment}>+</button>
-      <button on:click={decrement}>-</button>
-    </div>
+  <div class="my-2 text-primary/60">
+    Price : {pricetag}
   </div>
-  <div class="price">
-    Price : {price}
-  </div>
-  <CheckoutBtn />
+  <Button size="sm" class="w-full" on:click|once={addToCart}>
+    <ShoppingBag size="20" strokeWidth="1.4" class="mr-1" />
+    Add to Cart</Button
+  >
 </div>
-
-<style>
-  .price,
-  .quantity {
-    border: 1px solid #eee;
-    margin: 10px 3px;
-    padding: 3px 15px;
-    background: rgba(128, 128, 128, 0.192);
-    border-radius: 4px;
-    text-align: center;
-    display: flex;
-    gap: 0 10px;
-    justify-content: space-between;
-  }
-  button {
-    background: rgba(0, 13, 26, 0.4);
-    padding: 3px 6px;
-    font-family: monospace;
-    border-radius: 5px;
-  }
-</style>

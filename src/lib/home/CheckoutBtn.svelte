@@ -1,6 +1,5 @@
 <script>
-  import { allproducts, cartItems } from "$lib/state";
-  import Product from "$lib/home/Product.svelte";
+  import { cartItems } from "$lib/state";
   import { toast } from "svelte-sonner";
   import Button from "$lib/components/ui/button/button.svelte";
 
@@ -46,5 +45,5 @@
       d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
     /></svg
   >
-  Buy Now</Button
+  Checkout</Button
 >

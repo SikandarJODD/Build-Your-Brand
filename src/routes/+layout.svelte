@@ -7,7 +7,7 @@
   export let data;
   $: username = data.username;
   import { ModeWatcher } from "mode-watcher";
-  import { fade, fly } from "svelte/transition";
+  import { fade } from "svelte/transition";
   $: isStudio = $page.url.pathname.split("/")[1] === "studio";
   $: console.log($page.url.pathname, isStudio);
 </script>
