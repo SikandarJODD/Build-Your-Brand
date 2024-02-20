@@ -39,21 +39,21 @@ export const actions: Actions = {
         if (userAlreadyPresent.length > 0) {
             return setError(form, "username", "Username already taken");
         }
-
-
         await db.insert(userTable).values({
             id: userId,
             username: username,
             password: hashedPassword,
+            userType: userType
         })
 
         const session = await lucia.createSession(userId, {});
         const sessionCookie = lucia.createSessionCookie(session.id);
+        console.log(sessionCookie, 'sessionCookie');
         cookies.set(sessionCookie.name, sessionCookie.value, {
             path: ".",
             ...sessionCookie.attributes
         });
 
-        return { form, redirect: "/studio/edit" };
+        return { form };
     }
 };

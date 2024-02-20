@@ -1,13 +1,11 @@
 <script>
-  import { allproducts, cartItems } from "$lib/state";
-  import { fade, scale } from "svelte/transition";
-  import CheckoutBtn from "./CheckoutBtn.svelte";
+  import { allproducts } from "$lib/state";
+  import { fade } from "svelte/transition";
   import Button from "$lib/components/ui/button/button.svelte";
   import { ShoppingBag } from "lucide-svelte";
   import { toast } from "svelte-sonner";
   export let i = 0;
   export let title = "Mango";
-  export let quantity = 1;
   export let pricetag = 60;
   export let img = "";
   let addToCart = () => {

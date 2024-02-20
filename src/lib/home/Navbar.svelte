@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import Button from "$lib/components/ui/button/button.svelte";
   import {
     AlignJustify,
@@ -157,7 +158,7 @@
               >
                 {#each profileItems as item}
                   {#if item.name === "Sign Out"}
-                    <form method="post">
+                    <form method="post" use:enhance>
                       <button
                         formaction="/?/logout"
                         class="block w-full px-4 py-2 text-left text-sm text-primary hover:bg-gray-100 dark:hover:bg-slate-800"

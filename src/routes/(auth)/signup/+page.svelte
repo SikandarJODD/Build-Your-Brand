@@ -20,7 +20,7 @@
           if ($userType === "buyer") {
             goto("/studio/edit");
           } else {
-            goto("/");
+            goto("/dashboard/edit");
           }
         }, 600);
       } else {

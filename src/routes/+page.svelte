@@ -1,6 +1,12 @@
 <script>
+  import { goto } from "$app/navigation";
   import Button from "$lib/components/ui/button/button.svelte";
+  import { userType } from "$lib/state";
   import { Github, ShoppingBag } from "lucide-svelte";
+  let sendSeller = () => {
+    userType.set("seller");
+    goto("/signup");
+  };
 </script>
 
 <div
@@ -30,5 +36,6 @@
       <ShoppingBag size={20} strokeWidth={1.5} class="mr-1.5" />
       View Products</Button
     >
+    <Button on:click={sendSeller}>Become a Seller</Button>
   </div>
 </div>

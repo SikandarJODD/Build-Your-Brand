@@ -5,12 +5,9 @@ export const load: LayoutServerLoad = async ({ locals, url }) => {
     let session = await locals.user;
     // get products from stripeCode and return it
     let Productsdata = await getProducts();
-
-
-
-
     if (session) {
         return {
+            userType: session.userType.toString(),
             username: session.username.toString(),
             url: url.pathname,
         }
@@ -18,6 +15,7 @@ export const load: LayoutServerLoad = async ({ locals, url }) => {
     else {
 
         return {
+
             username: '',
             url: url.pathname,
         }

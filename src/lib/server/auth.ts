@@ -10,6 +10,7 @@ export interface DatabaseUser {
     id: string;
     username: string;
     password: string;
+    userType: string;
 }
 
 const adapter = new DrizzlePostgreSQLAdapter(db, sessionTable, userTable);
@@ -25,7 +26,8 @@ export const lucia = new Lucia(adapter, {
     getUserAttributes: (attributes) => {
         return {
             // attributes has the type of DatabaseUserAttributes
-            username: attributes.username
+            username: attributes.username,
+            userType: attributes.userType
         };
     }
 })
@@ -36,5 +38,6 @@ declare module "lucia" {
     }
 }
 interface DatabaseUserAttributes {
+    userType: any;
     username: string;
 }
