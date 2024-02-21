@@ -53,7 +53,6 @@
     },
   ];
   let wid = 0;
-  $: console.log(wid);
 </script>
 
 <svelte:window bind:innerWidth={wid} />

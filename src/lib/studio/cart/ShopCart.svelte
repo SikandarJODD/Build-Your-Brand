@@ -3,20 +3,25 @@
   import CheckoutBtn from "$lib/home/CheckoutBtn.svelte";
   import { allproducts, cartItems } from "$lib/state";
   import { Minus, Plus, X } from "lucide-svelte";
-  let increment = (i: number) => {
+  let increment = (i: string) => {
     allproducts.update((n) => {
-      n[i].quantity += 1;
+      n.filter((item) => {
+        if (item.id === i) {
+          item.quantity += 1;
+        }
+      });
       return n;
     });
   };
-  let decrement = (i: number) => {
+  let decrement = (i: string) => {
     allproducts.update((n) => {
-      // if product quantity is 0, remove it from the cart
-      if (n[i].quantity === 0) {
-        return n;
-      } else {
-        n[i].quantity -= 1;
-      }
+      n.filter((item) => {
+        if (item.id === i && item.quantity === 0) {
+          return n;
+        } else if (item.id === i) {
+          item.quantity -= 1;
+        }
+      });
       return n;
     });
   };
@@ -78,7 +83,7 @@
                       <Button
                         size="icon"
                         variant="ghost"
-                        on:click={() => increment(i)}
+                        on:click={() => increment(item.id)}
                       >
                         <Plus size="20" strokeWidth="1.4" />
                       </Button>
@@ -88,7 +93,7 @@
                       <Button
                         size="icon"
                         variant="ghost"
-                        on:click={() => decrement(i)}
+                        on:click={() => decrement(item.id)}
                       >
                         <Minus size="20" strokeWidth="1.4" />
                       </Button>

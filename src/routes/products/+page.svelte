@@ -3,7 +3,6 @@
   import Product from "$lib/home/Product.svelte";
   import Plane1 from "$lib/home/Plane1.svelte";
   import { fade } from "svelte/transition";
-  import { flip } from "svelte/animate";
   let checkout = async () => {
     console.log($cartItems);
     await fetch("api/stripeCheckout", {
@@ -34,8 +33,8 @@
         class="flex gap-2 md:gap-4 flex-wrap justify-center md:justify-start"
         transition:fade
       >
-        {#each $sprod as { title, pricetag, quantity, img }, i}
-          <Product {title} {pricetag} {quantity} {i} {img} />
+        {#each $allproducts as { title, pricetag, img }, i}
+          <Product {title} {pricetag} {i} {img} />
         {:else}
           <div class="text-xl">No products Found</div>
         {/each}

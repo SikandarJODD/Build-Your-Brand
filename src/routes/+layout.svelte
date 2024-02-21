@@ -1,24 +1,26 @@
 <script>
   import { page } from "$app/stores";
+  import { seller_profile, buyer_profile } from "$lib";
   import { Toaster } from "$lib/components/ui/sonner";
   import Navbar from "$lib/home/Navbar.svelte";
   import "../app.pcss";
   import "../style.css";
   export let data;
-  console.log(data, "data");
+  let profileItems =
+    data.userType === "seller" ? seller_profile : buyer_profile;
   $: username = data.username;
   import { ModeWatcher } from "mode-watcher";
   import { fade } from "svelte/transition";
-  $: isStudio = $page.url.pathname.split("/")[1] === "studio";
+  $: isStudio =
+    $page.url.pathname.split("/")[1] === "studio" ||
+    $page.url.pathname.split("/")[1] === "dashboard";
 </script>
 
-<!-- Toaster to show toast  -->
 <Toaster />
-<!-- for Dark & Light Mode : ModeWatcher -->
 <ModeWatcher />
 
 {#if !isStudio}
-  <Navbar {username} />
+  <Navbar {username} {profileItems} />
 {/if}
 {#if isStudio}
   {#key data.url}

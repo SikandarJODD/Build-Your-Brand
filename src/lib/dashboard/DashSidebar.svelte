@@ -1,43 +1,32 @@
 <!-- Dark Side bar with Profile icon on right -->
 <script>
   import { page } from "$app/stores";
-  import { Home, Pen, PenLine, Settings2, ShoppingCart } from "lucide-svelte";
+  import { Home, Package, Settings2, ShoppingCart } from "lucide-svelte";
 
   let isMobileMenu = false;
-  let layoutNavs = [
+  export let layoutNavs = [
     {
-      name: "Dashboard",
-      link: "/studio/",
+      name: "Home",
+      link: "/",
       icon: Home,
     },
     {
-      name: "Purchases",
-      link: "",
-      icon: ShoppingCart,
+      name: "Dashboard",
+      link: "/dashboard/",
+      icon: Home,
     },
     {
-      name: "Edit Profile",
-      link: "/studio/edit",
-      icon: Settings2,
+      name: "Create Product",
+      link: "/dashboard/create_product",
+      icon: Package,
+    },
+    {
+      name: "All Products",
+      link: "/dashboard/all_products",
+      icon: Home,
     },
   ];
-  let teams = [
-    {
-      name: "Frontend Team",
-      link: "#",
-      icon: "F",
-    },
-    {
-      name: "UI Designers",
-      link: "#",
-      icon: "U",
-    },
-    {
-      name: "System Designers",
-      link: "#",
-      icon: "S",
-    },
-  ];
+
   let webdata = {
     img: "https://i.pinimg.com/564x/84/a1/6a/84a16af6971e5c4234fa132c06b14969.jpg",
     profileName: "User",
@@ -49,7 +38,6 @@
   };
   let webName = "Ukiyo";
   $: routeID = $page.route.id;
-  $: pageURL = $page.url;
 </script>
 
 <div>
@@ -62,15 +50,15 @@
     aria-modal="true"
   >
     <!--
-        Off-canvas menu backdrop, show/hide based on off-canvas menu state.
-  
-        Entering: "transition-opacity ease-linear duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "transition-opacity ease-linear duration-300"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
+          Off-canvas menu backdrop, show/hide based on off-canvas menu state.
+    
+          Entering: "transition-opacity ease-linear duration-300"
+            From: "opacity-0"
+            To: "opacity-100"
+          Leaving: "transition-opacity ease-linear duration-300"
+            From: "opacity-100"
+            To: "opacity-0"
+        -->
     <div
       class="{isMobileMenu
         ? 'translate-x-0 transition ease-in-out duration-300 transform '
@@ -83,30 +71,30 @@
         : '-translate-x-full transition ease-in-out duration-300 transform'} fixed inset-0 flex"
     >
       <!--
-          Off-canvas menu, show/hide based on off-canvas menu state.
-  
-          Entering: "transition ease-in-out duration-300 transform"
-            From: "-translate-x-full"
-            To: "translate-x-0"
-          Leaving: "transition ease-in-out duration-300 transform"
-            From: "translate-x-0"
-            To: "-translate-x-full"
-        -->
+            Off-canvas menu, show/hide based on off-canvas menu state.
+    
+            Entering: "transition ease-in-out duration-300 transform"
+              From: "-translate-x-full"
+              To: "translate-x-0"
+            Leaving: "transition ease-in-out duration-300 transform"
+              From: "translate-x-0"
+              To: "-translate-x-full"
+          -->
       <div
         class="{isMobileMenu
           ? 'opacity-100 ease-in-out duration-300 '
           : 'opacity-0 ease-in-out duration-300 '} relative mr-16 flex w-full max-w-xs flex-1"
       >
         <!--
-            Close button, show/hide based on off-canvas menu state.
-  
-            Entering: "ease-in-out duration-300"
-              From: "opacity-0"
-              To: "opacity-100"
-            Leaving: "ease-in-out duration-300"
-              From: "opacity-100"
-              To: "opacity-0"
-          -->
+              Close button, show/hide based on off-canvas menu state.
+    
+              Entering: "ease-in-out duration-300"
+                From: "opacity-0"
+                To: "opacity-100"
+              Leaving: "ease-in-out duration-300"
+                From: "opacity-100"
+                To: "opacity-0"
+            -->
         <div class=" absolute left-full top-0 flex w-16 justify-center pt-5">
           <button
             type="button"
@@ -162,6 +150,27 @@
                   {/each}
                 </ul>
               </li>
+              <!-- <li>
+                  <div class="text-xs font-semibold leading-6 text-gray-400">
+                    Your teams
+                  </div>
+                  <ul role="list" class="-mx-2 mt-2 space-y-1">
+                    {#each teams as item}
+                      <li>
+                        <a
+                          href={item.link}
+                          class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                        >
+                          <span
+                            class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
+                            >{item.icon}</span
+                          >
+                          <span class="truncate">{item.name}</span>
+                        </a>
+                      </li>
+                    {/each}
+                  </ul>
+                </li> -->
             </ul>
           </nav>
         </div>
@@ -201,26 +210,26 @@
             </ul>
           </li>
           <!-- <li>
-            <div class="text-xs font-semibold leading-6 text-gray-400">
-              Your teams
-            </div>
-            <ul role="list" class="-mx-2 mt-2 space-y-1">
-              {#each teams as item}
-                <li>
-                  <a
-                    href={item.link}
-                    class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold transition-all duration-150"
-                  >
-                    <span
-                      class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
-                      >{item.icon}</span
+              <div class="text-xs font-semibold leading-6 text-gray-400">
+                Your teams
+              </div>
+              <ul role="list" class="-mx-2 mt-2 space-y-1">
+                {#each teams as item}
+                  <li>
+                    <a
+                      href={item.link}
+                      class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold transition-all duration-150"
                     >
-                    <span class="truncate">{item.name}</span>
-                  </a>
-                </li>
-              {/each}
-            </ul>
-          </li> -->
+                      <span
+                        class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
+                        >{item.icon}</span
+                      >
+                      <span class="truncate">{item.name}</span>
+                    </a>
+                  </li>
+                {/each}
+              </ul>
+            </li> -->
           <li class="-mx-6 mt-auto">
             <a
               href={webdata.profileLink}
@@ -272,7 +281,7 @@
       <img
         class="h-8 w-8 rounded-full bg-gray-800"
         src={webdata.profileImg}
-        alt=""
+        alt="ukiyo"
       />
     </a>
   </div>
