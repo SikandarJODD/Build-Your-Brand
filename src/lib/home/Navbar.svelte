@@ -1,18 +1,18 @@
 <script lang="ts">
+  import * as AlertDialog from "$lib/components/ui/alert-dialog";
   import { enhance } from "$app/forms";
   import Button from "$lib/components/ui/button/button.svelte";
   import {
     AlignJustify,
     Home,
     Package,
-    PanelsTopLeft,
-    ScrollText,
     ShoppingCart,
     User,
     X,
   } from "lucide-svelte";
   import { slide } from "svelte/transition";
   import ToggleMode from "./ToggleMode.svelte";
+  import { goto } from "$app/navigation";
   export let username: string;
   $: user = username;
   let isProfileOpen = false;
@@ -110,10 +110,16 @@
           <Button
             size="icon"
             variant="outline"
-            href="/cart"
+            on:click={() => {
+              if (user.length === 0) {
+                goto("/login");
+              } else {
+                goto("/cart");
+              }
+            }}
             class="bg-transparent border-primary/40"
           >
-            <ShoppingCart size="22" strokeWidth="1.3" />
+            <ShoppingCart size="20" strokeWidth="1.3" />
           </Button>
           <!-- <ToggleMode /> -->
           <div class="flex-shrink-0">

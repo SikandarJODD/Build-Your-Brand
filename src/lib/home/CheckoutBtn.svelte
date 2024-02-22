@@ -1,40 +1,45 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import { cartItems } from "$lib/state";
+  import { allproducts, cartItems } from "$lib/state";
   import { toast } from "svelte-sonner";
   import Button from "$lib/components/ui/button/button.svelte";
   import { goto } from "$app/navigation";
-  // let checkout = async () => {
-  //   console.log($cartItems);
-  //   if ($cartItems.length === 0) {
-  //     toast.error("Cart is Empty!");
-  //     return;
-  //   }
-  //   await fetch("api/stripeCheckout", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ items: $cartItems }),
-  //   })
-  //     .then((data) => {
-  //       return data.json();
-  //     })
-  //     .then((data) => {
-  //       window.location.replace(data.url);
-  //     });
-  // };
-  // on:click={() => checkout()}
+  let checkout = async () => {
+    console.log($cartItems);
+    if ($cartItems.length === 0) {
+      toast.error("Cart is Empty!");
+      return;
+    }
+    await fetch("api/stripeCheckout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ items: $cartItems }),
+    })
+      .then((data) => {
+        return data.json();
+      })
+      .then((data) => {
+        window.location.replace(data.url);
+      });
+  };
 </script>
 
 <form
   method="post"
   use:enhance={() => {
-    return async ({ result, update }) => {
+    return async ({ result }) => {
       if (result.status === 200) {
         toast.success("Checkout Successful!", {
           description: "Product Buyied Successfully!",
           duration: 3000,
+        });
+        allproducts.update((data) => {
+          data.map((item) => {
+            item.quantity = 0;
+          });
+          return data;
         });
         goto("/");
       }
@@ -47,7 +52,12 @@
     id="items"
     value={JSON.stringify($cartItems)}
   />
-  <Button variant="outline" type="submit" class="w-full border-primary">
+  <Button
+    on:click={() => checkout()}
+    variant="outline"
+    type="submit"
+    class="w-full border-primary"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"

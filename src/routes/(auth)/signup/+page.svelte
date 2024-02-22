@@ -36,7 +36,7 @@
 <div class="flex h-[calc(100vh-65px)] items-center justify-center">
   <Card.Root class="mx-3 w-full md:mx-0 md:w-[375px]">
     <Card.Header class="space-y-1">
-      <Card.Title class="text-2xl">Create an account</Card.Title>
+      <Card.Title class="text-2xl">Create an account as {$userType}</Card.Title>
       <Card.Description
         >Enter your Username below to create your account</Card.Description
       >

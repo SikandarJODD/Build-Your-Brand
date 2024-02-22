@@ -21,7 +21,7 @@ let sendData = async (item: any, userId: string) => {
     })
 }
 export const actions: Actions = {
-    default: async ({ request, locals }) => {
+    default: async ({ request, locals, fetch }) => {
         const form = await request.formData();
         const items: any = JSON.parse(form.get('items'));
         console.log(items, 'Items');
@@ -40,19 +40,31 @@ export const actions: Actions = {
                 lineItems.push({ price: item.priceId, quantity: item.quantity });
                 sendData(item, String(user_session?.userId));
             });
+            console.log(lineItems, 'Line Items');
+            // await fetch("api/stripeCheckout", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify({ items: lineItems }),
+            // })
+            //     .then((data) => {
+            //         return data.json();
+            //     })
+            //     .then((data) => {
+            //         return {
+            //             status: 200,
+            //             headers: { 'content-type': 'application/json' },
+            //             body: JSON.stringify({ url: data.url })
+            //         };
+            //     });
+            // const session = await stripe.checkout.sessions.create({
+            //     line_items: lineItems,
+            //     mode: 'payment',
+            //     success_url: 'https://build-your-brand.vercel.app/success',
+            //     cancel_url: 'https://build-your-brand.vercel.app/cancel'
+            // });
 
-
-            const session = await stripe.checkout.sessions.create({
-                line_items: lineItems,
-                mode: 'payment',
-                success_url: 'https://build-your-brand.vercel.app/success',
-                cancel_url: 'https://build-your-brand.vercel.app/cancel'
-            });
-
-            return {
-                status: 200,
-                body: JSON.stringify({ url: session.url })
-            };
         }
     }
 };

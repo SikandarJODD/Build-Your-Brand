@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { allproducts, cartItems, sprod } from "$lib/state";
-  import Product from "$lib/home/Product.svelte";
+  import { allproducts, sprod } from "$lib/state";
   import Input from "$lib/components/ui/input/input.svelte";
   import Label from "$lib/components/ui/label/label.svelte";
   import Slider from "$lib/components/ui/slider/slider.svelte";
@@ -13,16 +12,20 @@
       sprod.set($allproducts);
       return allproducts;
     }
-    let product = $allproducts.filter((p) => p.title.includes(title));
+    let product = $allproducts.filter((p) => {
+      return p.name.toLowerCase().includes(title);
+    });
     sprod.set(product);
     return product;
   };
   let text = "";
   $: searchProduct(text);
+  $: console.log($allproducts, $sprod);
+
   let priceVal = 1;
   let changePrice = (e) => {
     priceVal = e[0] * 100;
-    let product = $allproducts.filter((p) => p.pricetag >= e[0] * 100);
+    let product = $allproducts.filter((p) => Number(p.price) >= e[0] * 100);
     sprod.set(product);
     return product;
   };
