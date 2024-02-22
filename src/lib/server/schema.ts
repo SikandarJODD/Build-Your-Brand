@@ -70,23 +70,19 @@ export const productTable = pgTable("product", {
         mode: "date"
     }).defaultNow(),
     product_url: text("product_url").notNull(),
+    priceId: text("price_id"),
 });
 
 // order table
 export const orderTable = pgTable("order", {
-    id: text("id").primaryKey(),
-    userId: text("user_id")
-        .notNull()
-        .references(() => userTable.id),
-    productId: text("product_id")
-        .notNull()
-        .references(() => productTable.id),
+    id: text("id").primaryKey().notNull(),
+    userId: text("user_id").notNull(),
+    productId: text("product_id").notNull(),
     name: text("name").notNull(),
     desc: text("desc"),
     quantity: text("quantity").notNull(),
-    createdAt: timestamp("created_at", {
-        withTimezone: true,
-        mode: "date"
-    }).defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow(),
+    price: text("price"),
+    productUrl: text("product_url"),
 });
 

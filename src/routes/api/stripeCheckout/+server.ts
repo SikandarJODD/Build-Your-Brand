@@ -1,3 +1,5 @@
+import { db } from '$lib/server/db';
+import { orderTable } from '$lib/server/schema';
 import type { RequestHandler } from '@sveltejs/kit';
 // localhost:5173/api/stripeCheckout
 import Stripe from 'stripe';
@@ -7,6 +9,7 @@ const stripe = new Stripe(SECRECT_STRIPE_KEY, {
     apiVersion: '2023-10-16'
 });
 
+
 export const POST: RequestHandler = async ({ request }) => {
     const data = await request.json();
     const items = data.items;
@@ -14,9 +17,8 @@ export const POST: RequestHandler = async ({ request }) => {
 
     let lineItems: any = [];
     items.forEach((item: any) => {
-        lineItems.push({ price: item.id, quantity: item.quantity });
+        lineItems.push({ price: item.priceId, quantity: item.quantity });
     });
-    console.log(lineItems, 'Line Items');
 
     const session = await stripe.checkout.sessions.create({
         line_items: lineItems,

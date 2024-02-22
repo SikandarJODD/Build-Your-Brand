@@ -33,8 +33,8 @@
         class="flex gap-2 md:gap-4 flex-wrap justify-center md:justify-start"
         transition:fade
       >
-        {#each $allproducts as { title, pricetag, img }, i}
-          <Product {title} {pricetag} {i} {img} />
+        {#each $allproducts as { name, price, product_url, product_id }, i}
+          <Product {name} {price} {product_url} {product_id} />
         {:else}
           <div class="text-xl">No products Found</div>
         {/each}

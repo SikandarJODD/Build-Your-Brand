@@ -3,6 +3,7 @@
   import { seller_profile, buyer_profile } from "$lib";
   import { Toaster } from "$lib/components/ui/sonner";
   import Navbar from "$lib/home/Navbar.svelte";
+  import { onMount } from "svelte";
   import "../app.pcss";
   import "../style.css";
   export let data;
@@ -11,9 +12,21 @@
   $: username = data.username;
   import { ModeWatcher } from "mode-watcher";
   import { fade } from "svelte/transition";
+  import { allproducts } from "$lib/state";
   $: isStudio =
     $page.url.pathname.split("/")[1] === "studio" ||
     $page.url.pathname.split("/")[1] === "dashboard";
+  onMount(() => {
+    console.log("layout mounted");
+    let temp = data.products;
+    for (let i = 0; i < temp.length; i++) {
+      let element = temp[i];
+      element.quantity = 0;
+    }
+    console.log(JSON.stringify(temp));
+    allproducts.set(temp);
+    console.log($allproducts, "All Products Store");
+  });
 </script>
 
 <Toaster />

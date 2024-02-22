@@ -5,8 +5,8 @@
   import { Minus, Plus, X } from "lucide-svelte";
   let increment = (i: string) => {
     allproducts.update((n) => {
-      n.filter((item) => {
-        if (item.id === i) {
+      n.map((item) => {
+        if (item.product_id === i) {
           item.quantity += 1;
         }
       });
@@ -15,10 +15,10 @@
   };
   let decrement = (i: string) => {
     allproducts.update((n) => {
-      n.filter((item) => {
-        if (item.id === i && item.quantity === 0) {
+      n.map((item) => {
+        if (item.product_id === i && item.quantity === 0) {
           return n;
-        } else if (item.id === i) {
+        } else if (item.product_id === i) {
           item.quantity -= 1;
         }
       });
@@ -49,8 +49,8 @@
             >
               <div class="flex-shrink-0">
                 <img
-                  src={item.img}
-                  alt="{item.title} ukiyo"
+                  src={item.product_url}
+                  alt="{item.name} ukiyo"
                   class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48"
                 />
               </div>
@@ -65,13 +65,13 @@
                         <a
                           href="#"
                           class="font-medium text-primary capitalize hover:text-gray-800"
-                          >{item.title}</a
+                          >{item.name}</a
                         >
                       </h3>
                     </div>
 
                     <p class="mt-1 text-sm font-medium text-primary/60">
-                      ₹{item.pricetag}.00
+                      ₹{item.price}.00
                     </p>
                   </div>
 
@@ -83,7 +83,7 @@
                       <Button
                         size="icon"
                         variant="ghost"
-                        on:click={() => increment(item.id)}
+                        on:click={() => increment(item.product_id)}
                       >
                         <Plus size="20" strokeWidth="1.4" />
                       </Button>
@@ -93,7 +93,7 @@
                       <Button
                         size="icon"
                         variant="ghost"
-                        on:click={() => decrement(item.id)}
+                        on:click={() => decrement(item.product_id)}
                       >
                         <Minus size="20" strokeWidth="1.4" />
                       </Button>
@@ -234,8 +234,8 @@
               class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80"
             >
               <img
-                src={item.img}
-                alt="{item.title} ukiyo"
+                src={item.product_url}
+                alt="{item.name} ukiyo"
                 class="h-full w-full object-cover object-center lg:h-full lg:w-full"
               />
             </div>
@@ -244,13 +244,13 @@
                 <h3 class="text-sm text-primary capitalize">
                   <a href="/products/{item.id}">
                     <span aria-hidden="true" class="absolute inset-0"></span>
-                    {item.title}
+                    {item.name}
                   </a>
                 </h3>
                 <p class="mt-1 text-sm text-gray-500">Natural</p>
               </div>
               <p class="text-sm font-medium text-primary/50">
-                ₹{item.pricetag}
+                ₹{item.price}
               </p>
             </div>
           </div>

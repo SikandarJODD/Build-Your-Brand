@@ -59,9 +59,10 @@ export const actions: Actions = {
                     product_id: stripeData.id,
                     name: formData.get('product_name'),
                     description: formData.get('product_desc'),
-                    price: formData.get('product_price'),
+                    price: Number(formData.get('product_price')),
                     stock: 5,
                     product_url: uploadStream.url,
+                    priceId: stripeData.default_price,
                 })
             }
         }

@@ -1,4 +1,4 @@
-import { pgTable, foreignKey, pgEnum, text, timestamp, unique, numeric } from "drizzle-orm/pg-core"
+import { pgTable, foreignKey, pgEnum, text, timestamp, unique, numeric, bigint } from "drizzle-orm/pg-core"
   import { sql } from "drizzle-orm"
 
 export const keyStatus = pgEnum("key_status", ['expired', 'invalid', 'valid', 'default'])
@@ -19,23 +19,12 @@ export const user = pgTable("user", {
 	id: text("id").primaryKey().notNull(),
 	username: text("username").notNull(),
 	password: text("password").notNull(),
-	userType: text("userType").default('seller'),
+	userType: text("userType").default('buyer'),
 },
 (table) => {
 	return {
 		userUsernameUnique: unique("user_username_unique").on(table.username),
 	}
-});
-
-export const product = pgTable("product", {
-	id: text("id").primaryKey().notNull(),
-	sellerId: text("seller_id").notNull().references(() => sellerProfile.id),
-	productId: text("product_id").notNull(),
-	name: text("name").notNull(),
-	description: text("description"),
-	price: text("price").notNull(),
-	stock: text("stock").notNull(),
-	createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow(),
 });
 
 export const sellerProfile = pgTable("seller_profile", {
@@ -63,10 +52,26 @@ export const buyerProfile = pgTable("buyer_profile", {
 
 export const order = pgTable("order", {
 	id: text("id").primaryKey().notNull(),
-	userId: text("user_id").notNull().references(() => user.id),
-	productId: text("product_id").notNull().references(() => product.id),
+	userId: text("user_id").notNull(),
+	productId: text("product_id").notNull(),
 	name: text("name").notNull(),
 	desc: text("desc"),
 	quantity: text("quantity").notNull(),
 	createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow(),
+	price: text("price"),
+	productUrl: text("product_url"),
+});
+
+export const product = pgTable("product", {
+	id: text("id").primaryKey().notNull(),
+	sellerId: text("seller_id").notNull(),
+	productId: text("product_id").notNull(),
+	name: text("name").notNull(),
+	description: text("description"),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	price: bigint("price", { mode: "number" }).notNull(),
+	stock: text("stock").notNull(),
+	createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow(),
+	productUrl: text("product_url").notNull(),
+	priceId: text("price_id"),
 });
