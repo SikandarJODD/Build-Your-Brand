@@ -69,6 +69,7 @@ export const productTable = pgTable("product", {
         withTimezone: true,
         mode: "date"
     }).defaultNow(),
+    product_url: text("product_url").notNull(),
 });
 
 // order table
