@@ -11,12 +11,12 @@
 </script>
 
 <div
-  class="relative flex h-[calc(100vh-65px)] flex-col items-center justify-center gap-3"
+  class="relative px-2 flex h-[calc(100vh-65px)] flex-col items-center justify-center gap-3"
 >
   <img
     src={bg}
     alt="bg"
-    class="h-[calc(100vh-65px)] w-full absolute -z-10 opacity-100 bg-white object-contain object-top"
+    class="hidden lg:block md:h-[calc(100vh-65px)] w-full absolute -z-10 opacity-100 bg-white object-contain object-top"
   />
   <div></div>
   <h1 class="mt-5 text-center text-4xl font-bold md:text-6xl text-gray-900">

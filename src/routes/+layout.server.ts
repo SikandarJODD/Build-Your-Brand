@@ -30,7 +30,8 @@ export const load: LayoutServerLoad = async ({ locals, url }) => {
         return {
             username: '',
             url: url.pathname,
-            products: productsdata
+            products: productsdata,
+            profileData: []
         }
     }
 };
