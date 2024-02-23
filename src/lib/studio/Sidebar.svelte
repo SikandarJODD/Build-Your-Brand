@@ -7,12 +7,12 @@
   let layoutNavs = [
     {
       name: "Dashboard",
-      link: "/studio/",
+      link: "/",
       icon: Home,
     },
     {
       name: "Purchases",
-      link: "",
+      link: "/studio/purchases",
       icon: ShoppingCart,
     },
     {
@@ -178,7 +178,7 @@
           src={webdata.img}
           alt="Build Your Brand"
         />
-        <h3 class="font-semibold head_font text-lg">{webName}</h3>
+        <h3 class="font-semibold head_font text-lg text-white">{webName}</h3>
       </a>
       <nav class="flex flex-1 flex-col">
         <ul role="list" class="flex flex-1 flex-col gap-y-7">
