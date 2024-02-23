@@ -154,6 +154,7 @@
                   />
                 </button>
               </div>
+
               <div
                 class="{isProfileOpen
                   ? 'scale-100 transform opacity-100 transition duration-100 ease-out'
@@ -187,7 +188,6 @@
                 </div>
               </div>
             </div>
-            <!-- content here -->
           {/if}
         </div>
       </div>
@@ -271,6 +271,8 @@
                 </a>
               {/if}
             {/each}
+            <!-- content here -->
+            <ToggleMode />
           </div>
         </div>
       {/if}
