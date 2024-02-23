@@ -29,6 +29,8 @@
       icon: Package,
     },
   ];
+  export let goodName: string;
+  export let goodEmail: string;
   export let details = {
     img: "https://i.pinimg.com/564x/84/a1/6a/84a16af6971e5c4234fa132c06b14969.jpg",
     title: "Ukiyo",
@@ -88,7 +90,7 @@
             />
           {/if}
           <a href="/" class="text-xl font-bold head_font">
-            {wid < 600 ? "B Y B" : details.title}
+            {wid < 600 ? "Ukiyo" : details.title}
           </a>
         </div>
         <div
@@ -222,9 +224,9 @@
               />
             </div>
             <div class="ml-3">
-              <div class="text-base font-medium text-primary">{user}</div>
+              <div class="text-base font-medium text-primary">{goodName}</div>
               <div class="text-sm font-medium text-muted-foreground">
-                {details.avaratEmail}
+                {goodEmail}
               </div>
             </div>
             <button

@@ -1,14 +1,26 @@
 <!-- Dark Side bar with Profile icon on right -->
 <script>
   import { page } from "$app/stores";
-  import { Home, Pen, PenLine, Settings2, ShoppingCart } from "lucide-svelte";
+  import {
+    Box,
+    Home,
+    Pen,
+    PenLine,
+    Settings2,
+    ShoppingCart,
+  } from "lucide-svelte";
 
   let isMobileMenu = false;
   let layoutNavs = [
     {
-      name: "Dashboard",
+      name: "Home",
       link: "/",
       icon: Home,
+    },
+    {
+      name: "Products",
+      link: "/products",
+      icon: Box,
     },
     {
       name: "Purchases",

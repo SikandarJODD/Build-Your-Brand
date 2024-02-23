@@ -26,7 +26,7 @@
     Build E-commerce Store with build In Payment Gateway & Provide Self Hosting
   </h2>
 
-  <p class="font-mono text-lg underline underline-offset-2">
+  <p class="font-mono text-lg underline underline-offset-2 text-center">
     Build Using <span class="text-orange-600">Sveltekit</span> &
     <span class="text-indigo-600">Stripe API</span>
   </p>

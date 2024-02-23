@@ -7,6 +7,8 @@
   import "../app.pcss";
   import "../style.css";
   export let data;
+  let goodName = data.profileData[0].name || "";
+  let goodEmail = data.profileData[0].email || "";
   let profileItems =
     data.userType === "seller" ? seller_profile : buyer_profile;
   $: username = data.username;
@@ -33,7 +35,7 @@
 <ModeWatcher />
 
 {#if !isStudio}
-  <Navbar {username} {profileItems} />
+  <Navbar {username} {profileItems} {goodEmail} {goodName} />
 {/if}
 {#if isStudio}
   {#key data.url}

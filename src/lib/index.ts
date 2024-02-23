@@ -27,12 +27,12 @@ export let seller_profile = [
 
 export let buyer_profile = [
     {
-        name: "Your Profile",
-        link: "/studio",
+        name: "Edit",
+        link: "/studio/edit",
     },
     {
-        name: "Settings",
-        link: "/studio/edit",
+        name: "Purchases",
+        link: "/studio/purchases",
     },
     {
         name: "Sign Out",
