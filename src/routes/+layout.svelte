@@ -14,7 +14,7 @@
   $: username = data.username;
   import { ModeWatcher } from "mode-watcher";
   import { fade } from "svelte/transition";
-  import { allproducts } from "$lib/state";
+  import { allproducts, sprod } from "$lib/state";
   $: isStudio =
     $page.url.pathname.split("/")[1] === "studio" ||
     $page.url.pathname.split("/")[1] === "dashboard";
@@ -27,6 +27,7 @@
     }
     console.log(JSON.stringify(temp));
     allproducts.set(temp);
+    sprod.set(temp);
     console.log($allproducts, "All Products Store");
   });
 </script>
